@@ -38,7 +38,7 @@ namespace NetSpell.Tests {
 
             // open file
             FileStream fs = new FileStream(validFile, FileMode.Open, FileAccess.Read, FileShare.Read);
-            StreamReader sr = new StreamReader(fs, Encoding.UTF7);
+            StreamReader sr = new StreamReader(fs, Encoding.UTF8);
 
             _timer.StartTimer();
 
@@ -63,7 +63,7 @@ namespace NetSpell.Tests {
 
             // open file
             fs = new FileStream(invalidFile, FileMode.Open, FileAccess.Read, FileShare.Read);
-            sr = new StreamReader(fs, Encoding.UTF7);
+            sr = new StreamReader(fs, Encoding.UTF8);
 
             _timer.StartTimer();
             // read line by line

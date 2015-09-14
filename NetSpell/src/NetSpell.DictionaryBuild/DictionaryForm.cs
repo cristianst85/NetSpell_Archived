@@ -241,7 +241,7 @@ namespace NetSpell.DictionaryBuild {
 
                 // open dictionary file
                 FileStream fs = (FileStream)openAffixDialog.OpenFile();
-                StreamReader sr = new StreamReader(fs, Encoding.UTF7);
+                StreamReader sr = new StreamReader(fs, Encoding.UTF8);
 
                 // read line by line
                 while (sr.Peek() >= 0) {
@@ -278,7 +278,7 @@ namespace NetSpell.DictionaryBuild {
                 this.Cursor = Cursors.WaitCursor;
                 // open dictionary file
                 FileStream fs = (FileStream)openPhoneticDialog.OpenFile();
-                StreamReader sr = new StreamReader(fs, Encoding.UTF7);
+                StreamReader sr = new StreamReader(fs, Encoding.UTF8);
 
                 this.txtPhonetic.Text = string.Empty;
 
@@ -306,7 +306,7 @@ namespace NetSpell.DictionaryBuild {
                 this.Cursor = Cursors.WaitCursor;
                 // open dictionary file
                 FileStream fs = (FileStream)openWordsDialog.OpenFile();
-                StreamReader sr = new StreamReader(fs, Encoding.UTF7);
+                StreamReader sr = new StreamReader(fs, Encoding.UTF8);
 
                 _Words.Clear();
                 Hashtable tempWordList = new Hashtable();
