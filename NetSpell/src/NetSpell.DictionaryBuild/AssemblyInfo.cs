@@ -16,7 +16,7 @@ using System.Runtime.CompilerServices;
 [assembly: AssemblyProduct("NetSpell")]
 [assembly: AssemblyCopyright("Copyright © 2003 Paul Welter.  All rights reserved.")]
 [assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]		
+[assembly: AssemblyCulture("")]
 
 //
 // Version information for an assembly consists of the following four values:

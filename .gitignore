@@ -53,3 +53,5 @@ TraySpell/src/NetSpell.TraySpell.Setup/obj
 TraySpell/src/NetSpell.TraySpell/*.user
 TraySpell/src/NetSpell.TraySpell/bin
 TraySpell/src/NetSpell.TraySpell/obj
+StyleCop.Cache
+Settings.StyleCop

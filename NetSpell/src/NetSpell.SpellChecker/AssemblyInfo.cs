@@ -2,10 +2,9 @@
 // All rights reserved.
 
 using System;
-using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
 using System.Globalization;
+using System.Reflection;
+using System.Runtime.InteropServices;
 
 //
 // General Information about an assembly is controlled through the following 
@@ -19,9 +18,8 @@ using System.Globalization;
 [assembly: AssemblyProduct("NetSpell")]
 [assembly: AssemblyCopyright("Copyright © 2003 Paul Welter.  All rights reserved.")]
 [assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]		
+[assembly: AssemblyCulture("")]
 
-//
 // Version information for an assembly consists of the following four values:
 //
 //      Major Version
@@ -60,126 +58,106 @@ using System.Globalization;
 //       documentation for more information on this.
 //
 [assembly: AssemblyDelaySign(false)]
-[assembly: AssemblyKeyFile(@"..\..\Spell.snk")]
 [assembly: AssemblyKeyName("")]
 
 [assembly: CLSCompliant(true)]
 [assembly: ComVisible(false)]
 
-namespace NetSpell.SpellChecker
-{
-	/// <summary>
-	///     AssemblyInfo class
-	/// </summary>
-	public class AssemblyInfo
-	{
+namespace NetSpell.SpellChecker {
+    /// <summary>
+    /// AssemblyInfo class
+    /// </summary>
+    public class AssemblyInfo {
+        private Type myType;
 
-		private Type myType;
+        /// <summary>
+        /// Initialized the AssemblyInfo class with the <see cref="AssemblyInfo"/> given type
+        /// </summary>
+        public AssemblyInfo(Type type) {
+            this.myType = type;
+        }
 
-		/// <summary>
-		///     Initialized the AssemblyInfo class with the given type
-		/// </summary>
-		public AssemblyInfo(Type type)
-		{
-			this.myType = type;
-		}
+        /// <summary>
+        /// CodeBase of Assembly
+        /// </summary>
+        public string CodeBase {
+            get { return this.myType.Assembly.CodeBase.ToString(CultureInfo.CurrentUICulture); }
+        }
 
-		/// <summary>
-		/// CodeBase of Assembly
-		/// </summary>
-		public string CodeBase
-		{
-			get {return myType.Assembly.CodeBase.ToString(CultureInfo.CurrentUICulture);}
-		}
+        /// <summary>
+        /// Company of Assembly
+        /// </summary>
+        public string Company {
+            get {
+                Object[] r = this.myType.Assembly.GetCustomAttributes(typeof(AssemblyCompanyAttribute), false);
+                AssemblyCompanyAttribute ct = (AssemblyCompanyAttribute)r[0];
+                return ct.Company;
+            }
+        }
 
-		/// <summary>
-		/// Company of Assembly
-		/// </summary>
-		public string Company
-		{
-			get
-			{
-				Object[] r = myType.Assembly.GetCustomAttributes(typeof(AssemblyCompanyAttribute), false);
-				AssemblyCompanyAttribute ct = (AssemblyCompanyAttribute)r[0];
-				return ct.Company;
-			}
-		}
+        /// <summary>
+        /// Copyright of Assembly
+        /// </summary>
+        public string Copyright {
+            get {
+                Object[] r = this.myType.Assembly.GetCustomAttributes(typeof(AssemblyCopyrightAttribute), false);
+                AssemblyCopyrightAttribute ct = (AssemblyCopyrightAttribute)r[0];
+                return ct.Copyright;
+            }
+        }
 
-		/// <summary>
-		/// Copyright of Assembly
-		/// </summary>
-		public string Copyright
-		{
-			get
-			{
-				Object[] r = myType.Assembly.GetCustomAttributes(typeof(AssemblyCopyrightAttribute), false);
-				AssemblyCopyrightAttribute ct = (AssemblyCopyrightAttribute)r[0];
-				return ct.Copyright;
-			}
-		}
+        /// <summary>
+        /// Description of Assembly
+        /// </summary>
+        public string Description {
+            get {
+                Object[] r = this.myType.Assembly.GetCustomAttributes(typeof(AssemblyDescriptionAttribute), false);
+                AssemblyDescriptionAttribute ct = (AssemblyDescriptionAttribute)r[0];
+                return ct.Description;
+            }
+        }
 
-		/// <summary>
-		/// Description of Assembly
-		/// </summary>
-		public string Description
-		{
-			get
-			{
-				Object[] r = myType.Assembly.GetCustomAttributes(typeof(AssemblyDescriptionAttribute), false);
-				AssemblyDescriptionAttribute ct = (AssemblyDescriptionAttribute)r[0];
-				return ct.Description;
-			}
-		}
+        /// <summary>
+        /// FullName of Assembly
+        /// </summary>
+        public string FullName {
+            get { return this.myType.Assembly.GetName().FullName.ToString(CultureInfo.CurrentUICulture); }
+        }
 
-		/// <summary>
-		///		FullName of Assembly
-		/// </summary>
-		public string FullName
-		{
-			get {return myType.Assembly.GetName().FullName.ToString(CultureInfo.CurrentUICulture);}
-		}
+        /// <summary>
+        /// Name of Assembly
+        /// </summary>
+        public string Name {
+            get { return this.myType.Assembly.GetName().Name.ToString(CultureInfo.CurrentUICulture); }
+        }
 
-		/// <summary>
-		/// Name of Assembly
-		/// </summary>
-		public string Name
-		{
-			get	{return myType.Assembly.GetName().Name.ToString(CultureInfo.CurrentUICulture);}
-		}
+        /// <summary>
+        /// Product of Assembly
+        /// </summary>
+        public string Product {
+            get {
+                Object[] r = this.myType.Assembly.GetCustomAttributes(typeof(AssemblyProductAttribute), false);
+                AssemblyProductAttribute ct = (AssemblyProductAttribute)r[0];
+                return ct.Product;
+            }
+        }
 
-		/// <summary>
-		/// Product of Assembly
-		/// </summary>
-		public string Product
-		{
-			get
-			{
-				Object[] r = myType.Assembly.GetCustomAttributes(typeof(AssemblyProductAttribute), false);
-				AssemblyProductAttribute ct = (AssemblyProductAttribute)r[0];
-				return ct.Product;
-			}
-		}
+        /// <summary>
+        /// Title of Assembly
+        /// </summary>
+        public string Title {
+            get {
+                Object[] r = this.myType.Assembly.GetCustomAttributes(typeof(AssemblyTitleAttribute), false);
+                AssemblyTitleAttribute ct = (AssemblyTitleAttribute)r[0];
+                return ct.Title;
+            }
+        }
 
-		/// <summary>
-		/// Title of Assembly
-		/// </summary>
-		public string Title
-		{
-			get
-			{
-				Object[] r = myType.Assembly.GetCustomAttributes(typeof(AssemblyTitleAttribute), false);
-				AssemblyTitleAttribute ct = (AssemblyTitleAttribute)r[0];
-				return ct.Title;
-			}
-		}
-
-		/// <summary>
-		/// Version of Assembly
-		/// </summary>
-		public string Version
-		{
-			get { return myType.Assembly.GetName().Version.ToString(); }
-		}
-	}
+        /// <summary>
+        /// Version of Assembly
+        /// </summary>
+        public string Version {
+            get { return this.myType.Assembly.GetName().Version.ToString(); }
+        }
+    }
 }
-
