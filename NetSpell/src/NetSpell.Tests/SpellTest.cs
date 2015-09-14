@@ -1,12 +1,13 @@
 // Copyright (c) 2003, Paul Welter
 // All rights reserved.
 
+using System.Globalization;
+using System.Threading;
 using NetSpell.SpellChecker;
 using NetSpell.SpellChecker.Dictionary;
 using NUnit.Framework;
 
 namespace NetSpell.Tests {
-
     /// <summary>
     /// This is the spell checker test fixture for NUnit
     /// </summary>
@@ -14,10 +15,15 @@ namespace NetSpell.Tests {
     public class SpellTest {
 
         PerformanceTimer _timer = new PerformanceTimer();
-        WordDictionary _dictionary = new WordDictionary();
+        WordDictionary _dictionary;
+
+        public SpellTest() {
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+        }
 
         [SetUp]
         public void Setup() {
+            _dictionary = new WordDictionary();
             _dictionary.DictionaryFolder = @"..\..\..\..\dic";
             _dictionary.Initialize();
         }
@@ -218,7 +224,6 @@ namespace NetSpell.Tests {
             Assert.AreEqual("ths", _SpellChecker.CurrentWord, "Incorrect CurrentWord");
             _SpellChecker.ReplaceWord("this");
             Assert.AreEqual("Because people are really bad spellers, \r\nthis product was designed to prevent spelling errors in a text area like this.", _SpellChecker.Text, "Incorrect Text");
-
         }
 
         /// <summary>
@@ -242,8 +247,6 @@ namespace NetSpell.Tests {
             Assertion.AssertEquals("Incorrect WordOffset", 7, _SpellChecker.WordIndex);
             Assertion.AssertEquals("Incorrect CurrentWord", "errr", _SpellChecker.CurrentWord);
             Assertion.AssertEquals("Incorrect Text", "this is a test of a test errr", _SpellChecker.Text);
-
-
         }
 
         /// <summary>

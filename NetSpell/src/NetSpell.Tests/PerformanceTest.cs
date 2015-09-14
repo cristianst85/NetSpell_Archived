@@ -2,8 +2,10 @@
 // All rights reserved.
 
 using System;
+using System.Globalization;
 using System.IO;
 using System.Text;
+using System.Threading;
 using NetSpell.SpellChecker;
 using NUnit.Framework;
 
@@ -14,17 +16,19 @@ namespace NetSpell.Tests {
     [TestFixture]
     [Ignore("Too Long")]
     public class PerformanceTest {
-        Spelling _SpellChecker = new Spelling();
+        Spelling _SpellChecker;
         PerformanceTimer _timer = new PerformanceTimer();
 
         public PerformanceTest() {
             //
             // TODO: Add constructor logic here
             //
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
         }
 
         [SetUp]
         public void SetUp() {
+            _SpellChecker = new Spelling();
             _SpellChecker.Dictionary.DictionaryFolder = @"..\..\..\..\dic";
             _SpellChecker.Dictionary.Initialize();
 
@@ -34,7 +38,7 @@ namespace NetSpell.Tests {
 
         [Test]
         public void SuggestionRank() {
-            string invalidFile = @"..\src\NetSpell.Tests\Data\SuggestionTest.txt";
+            string invalidFile = @"..\..\Data\SuggestionTest.txt";
 
             // open file
             FileStream fs = new FileStream(invalidFile, FileMode.Open, FileAccess.Read, FileShare.Read);
@@ -91,7 +95,6 @@ namespace NetSpell.Tests {
                                 Console.WriteLine("{0}\t{1}\t{2}\t{3}",
                                     misSpelled, correctSpelled, "-1", "-1");
                             }
-
                         }
                     }
                     else {
@@ -114,7 +117,6 @@ namespace NetSpell.Tests {
 
             sr.Close();
             fs.Close();
-
         }
     }
 }

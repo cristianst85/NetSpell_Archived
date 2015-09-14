@@ -3,8 +3,10 @@
 
 using System;
 using System.Collections;
+using System.Globalization;
 using System.IO;
 using System.Text;
+using System.Threading;
 using NetSpell.SpellChecker.Dictionary;
 using NUnit.Framework;
 
@@ -14,15 +16,17 @@ namespace NetSpell.Tests {
     /// </summary>
     [TestFixture]
     public class DictionaryTest {
-        
-        private WordDictionary _WordDictionary = new WordDictionary();
+
+        private WordDictionary _WordDictionary;
         private PerformanceTimer _timer = new PerformanceTimer();
 
         public DictionaryTest() {
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
         }
 
         [SetUp]
         public void SetUp() {
+            _WordDictionary = new WordDictionary();
             _WordDictionary.DictionaryFolder = @"..\..\..\..\dic";
             _WordDictionary.Initialize();
         }

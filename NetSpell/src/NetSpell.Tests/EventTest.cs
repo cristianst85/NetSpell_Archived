@@ -2,6 +2,8 @@
 // All rights reserved.
 
 using System;
+using System.Globalization;
+using System.Threading;
 using NetSpell.SpellChecker;
 using NetSpell.SpellChecker.Dictionary;
 using NUnit.Framework;
@@ -13,7 +15,7 @@ namespace NetSpell.Tests {
     [TestFixture]
     public class EventTest {
 
-        WordDictionary _dictionary = new WordDictionary();
+        WordDictionary _dictionary;
         SpellingEventArgs _lastSpellingEvent;
         ReplaceWordEventArgs _lastReplaceEvent;
         EventNames _lastEvent = EventNames.None;
@@ -28,8 +30,13 @@ namespace NetSpell.Tests {
             ReplacedWord,
         };
 
+        public EventTest() {
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+        }
+
         [SetUp]
         public void Setup() {
+            _dictionary = new WordDictionary();
             _dictionary.DictionaryFolder = @"..\..\..\..\dic";
             _dictionary.Initialize();
         }
@@ -165,7 +172,6 @@ namespace NetSpell.Tests {
             _SpellChecker.SpellCheck();
             // event check
             Assert.AreEqual(EventNames.EndOfText, _lastEvent, "Incorrect Event");
-
         }
     }
 }
