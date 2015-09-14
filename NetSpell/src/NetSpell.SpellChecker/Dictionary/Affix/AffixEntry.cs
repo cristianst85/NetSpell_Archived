@@ -7,7 +7,7 @@ namespace NetSpell.SpellChecker.Dictionary.Affix {
     public class AffixEntry {
         private int _ConditionCount;
         private string _AddCharacters = string.Empty;
-        private int[] _Condition = new int[256];
+        private int[] _Condition = new int[1200];
         private string _StripCharacters = string.Empty;
 
         /// <summary>
