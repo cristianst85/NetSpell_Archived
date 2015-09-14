@@ -117,31 +117,13 @@
     <Compile Include="Dictionary\Affix\AffixEntry.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Dictionary\Affix\AffixEntryCollection.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Dictionary\Affix\AffixEntryEnumerator.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Dictionary\Affix\AffixRule.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Dictionary\Affix\AffixRuleCollection.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Dictionary\Affix\AffixRuleEnumerator.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Dictionary\Affix\AffixUtility.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Dictionary\Phonetic\PhoneticRule.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Dictionary\Phonetic\PhoneticRuleCollection.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Dictionary\Phonetic\PhoneticRuleEnumerator.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Dictionary\Phonetic\PhoneticUtility.cs">

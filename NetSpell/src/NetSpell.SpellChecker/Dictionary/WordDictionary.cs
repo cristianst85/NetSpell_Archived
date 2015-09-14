@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Design;
@@ -13,6 +14,10 @@ using NetSpell.SpellChecker.Dictionary.Affix;
 using NetSpell.SpellChecker.Dictionary.Phonetic;
 
 namespace NetSpell.SpellChecker.Dictionary {
+
+    using AffixRuleCollection = Dictionary<string, AffixRule>;
+    using PhoneticRuleCollection = List<PhoneticRule>;
+
     /// <summary>
     /// The WordDictionary class contains all the logic for managing the word list.
     /// </summary>
