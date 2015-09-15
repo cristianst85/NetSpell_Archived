@@ -53,7 +53,7 @@
     <DebugSymbols>true</DebugSymbols>
     <FileAlignment>4096</FileAlignment>
     <NoStdLib>false</NoStdLib>
-    <NoWarn />
+    <NoWarn>1591</NoWarn>
     <Optimize>false</Optimize>
     <RegisterForComInterop>false</RegisterForComInterop>
     <RemoveIntegerChecks>false</RemoveIntegerChecks>
@@ -114,6 +114,17 @@
     <Compile Include="AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Controls\CheckAsYouType.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\CheckAsYouTypeState.cs" />
+    <Compile Include="Controls\NativeMethods.cs" />
+    <Compile Include="Controls\SpellRichTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\SpellTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Dictionary\Affix\AffixEntry.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -153,6 +164,12 @@
     <Compile Include="TraceWriter.cs">
       <SubType>Code</SubType>
     </Compile>
+    <EmbeddedResource Include="Controls\CheckAsYouType.resx">
+      <DependentUpon>CheckAsYouType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\SpellTextBox.resx">
+      <DependentUpon>SpellTextBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dictionary\Dictionary.bmp" />
     <EmbeddedResource Include="Dictionary\WordDictionary.resx">
       <DependentUpon>WordDictionary.cs</DependentUpon>
@@ -188,9 +205,7 @@
   <ItemGroup>
     <None Include="Spell.snk" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="CodeAnalysis\CodeAnalysisConfiguration.xml" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent />
