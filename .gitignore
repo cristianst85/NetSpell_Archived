@@ -57,3 +57,5 @@ StyleCop.Cache
 Settings.StyleCop
 NetSpell/src/NetSpell.VisualState.xml
 NetSpell/src/TestResult.xml
+NetSpell/src/NetSpell.DictionaryBuild.Tests/bin/
+NetSpell/src/NetSpell.DictionaryBuild.Tests/obj/

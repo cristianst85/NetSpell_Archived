@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		NetSpell.build = NetSpell.build
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetSpell.DictionaryBuild.Tests", "NetSpell.DictionaryBuild.Tests\NetSpell.DictionaryBuild.Tests.csproj", "{1A19D87B-0286-4509-B7C5-21BF1A2248F0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{953B172F-6026-494E-BD97-111374606CFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{953B172F-6026-494E-BD97-111374606CFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{953B172F-6026-494E-BD97-111374606CFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A19D87B-0286-4509-B7C5-21BF1A2248F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A19D87B-0286-4509-B7C5-21BF1A2248F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A19D87B-0286-4509-B7C5-21BF1A2248F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A19D87B-0286-4509-B7C5-21BF1A2248F0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

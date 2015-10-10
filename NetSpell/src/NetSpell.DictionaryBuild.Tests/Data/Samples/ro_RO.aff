@@ -1,0 +1,30 @@
+# comment line
+SET UTF-8
+TRY iaăâșțîertolncusmpdbgfzvhjxkwyqACDM
+KEY qwertyuiop|asdfghjkl|zxcvbnm
+
+# comment line
+PFX o Y 1
+PFX o 0 auto .
+
+# comment line
+# comment line
+SFX t Y 3
+SFX t 0 u eț
+SFX t 0 ul eț
+SFX t 0 ului eț
+
+# comment line
+# comment line
+SFX e Y 2
+SFX e 0 le e
+SFX e 0 lui e
+
+# comment line
+PFX e Y 1
+PFX e 0 ne .
+
+# comment line
+REP 2
+REP ce che
+REP ci chi
