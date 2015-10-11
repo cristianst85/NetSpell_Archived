@@ -59,6 +59,16 @@ namespace NetSpell.DictionaryBuild.Tests.Hunspell {
             Assert.AreEqual(expectedLineString, affixRule.ToString());
         }
 
+        [TestCase('o', null, "auto", null, null, "o 0 auto .")]
+        [TestCase('t', null, "u", "eț", null, "t 0 u eț")]
+        [TestCase('e', null, "ne", null, null, "e 0 ne .")]
+        [TestCase('B', "ez", "ează", "[^i]ez", null, "B ez ează [^i]ez")]
+        [TestCase('q', null, "ul", null, "adj. m. sg. art.", "q 0 ul .")]
+        public void ToNetSpellString(char affixClassFlag, String strippingCharacters, String affix, String condition, String morphologicalDescription, String expectedLineString) {
+            AffixRule affixRule = new AffixRule(affixClassFlag, strippingCharacters, affix, condition, morphologicalDescription);
+            Assert.AreEqual(expectedLineString, affixRule.ToNetSpellString());
+        }
+
         [TestCase("PFX", 'o', null, "auto", null, null, "PFX o 0 auto .")]
         [TestCase("SFX", 't', null, "u", "eț", null, "SFX t 0 u eț")]
         [TestCase("SFX", 'e', null, "ne", null, null, "SFX e 0 ne .")]

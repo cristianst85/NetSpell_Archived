@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using NetSpell.DictionaryBuild.Hunspell;
 using NetSpell.SpellChecker.Dictionary;
 
 namespace NetSpell.DictionaryBuild {
@@ -239,36 +241,26 @@ namespace NetSpell.DictionaryBuild {
                 this.txtPrefix.Text = string.Empty;
                 this.txtSuffix.Text = string.Empty;
 
-                // open dictionary file
-                FileStream fs = (FileStream)openAffixDialog.OpenFile();
-                StreamReader sr = new StreamReader(fs, Encoding.UTF8);
+                String filePath = openAffixDialog.FileName;
+                AffixFile affixFile = AffixFile.Load(filePath, encoding: AffixFile.GetEncoding(filePath));
 
-                // read line by line
-                while (sr.Peek() >= 0) {
-                    string tempLine = sr.ReadLine().Trim();
-                    if (tempLine.Length > 3) {
-                        switch (tempLine.Substring(0, 3)) {
-                            case "TRY":
-                                this.txtTry.Text = tempLine.Substring(4);
-                                break;
-                            case "PFX":
-                                this.txtPrefix.AppendText(tempLine.Substring(4) + "\r\n");
-                                break;
-                            case "SFX":
-                                this.txtSuffix.AppendText(tempLine.Substring(4) + "\r\n");
-                                break;
-                            case "REP":
-                                if (!char.IsNumber(tempLine.Substring(4)[0])) {
-                                    this.txtReplace.AppendText(tempLine.Substring(4) + "\r\n");
-                                }
-                                break;
-                        }
+                this.txtTry.Text = affixFile.TryCharacters;
+
+                foreach (Affix affix in affixFile.Prefixes) {
+                    this.txtPrefix.AppendText(String.Format("{0}\r\n", affix.ToNetSpellString()));
+                    foreach (AffixRule affixRule in affix.Rules) {
+                        this.txtPrefix.AppendText(String.Format("{0}\r\n", affixRule.ToNetSpellString()));
+                    }
+                };
+                foreach (Affix affix in affixFile.Suffixes) {
+                    this.txtSuffix.AppendText(String.Format("{0}\r\n", affix.ToNetSpellString()));
+                    foreach (AffixRule affixRule in affix.Rules) {
+                        this.txtSuffix.AppendText(String.Format("{0}\r\n", affixRule.ToNetSpellString()));
                     }
                 }
-                // close reader
-                sr.Close();
-                // close stream
-                fs.Close();
+                foreach (KeyValuePair<String, String> replacement in affixFile.Replacements) {
+                    this.txtReplace.AppendText(String.Format("{0} {1}\r\n", replacement.Key, replacement.Value));
+                }
             }
             this.Cursor = Cursors.Default;
         }

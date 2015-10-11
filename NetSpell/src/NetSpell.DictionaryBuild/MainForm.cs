@@ -4,6 +4,7 @@
 using System;
 using System.Collections;
 using System.Windows.Forms;
+using NetSpell.DictionaryBuild.Commons;
 
 namespace NetSpell.DictionaryBuild {
     /// <summary>
@@ -57,6 +58,8 @@ namespace NetSpell.DictionaryBuild {
             // Required for Windows Form Designer support
             //
             InitializeComponent();
+            Version version = AssemblyUtils.GetVersion();
+            this.Text = this.Text.Replace("{version}", String.Format("{0}.{1}", version.Major, version.Minor));
         }
 
         private void editToolBar_ButtonClick(object sender, System.Windows.Forms.ToolBarButtonClickEventArgs e) {
@@ -224,9 +227,9 @@ namespace NetSpell.DictionaryBuild {
         /// </summary>
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
-            System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(MainForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.statusBar = new System.Windows.Forms.StatusBar();
-            this.mainMenu = new System.Windows.Forms.MainMenu();
+            this.mainMenu = new System.Windows.Forms.MainMenu(this.components);
             this.menuFile = new System.Windows.Forms.MenuItem();
             this.menuFileNew = new System.Windows.Forms.MenuItem();
             this.menuFileOpen = new System.Windows.Forms.MenuItem();
@@ -275,24 +278,24 @@ namespace NetSpell.DictionaryBuild {
             // mainMenu
             // 
             this.mainMenu.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-																					 this.menuFile,
-																					 this.menuEdit,
-																					 this.menuWindow,
-																					 this.menuHelp});
+            this.menuFile,
+            this.menuEdit,
+            this.menuWindow,
+            this.menuHelp});
             // 
             // menuFile
             // 
             this.menuFile.Index = 0;
             this.menuFile.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-																					 this.menuFileNew,
-																					 this.menuFileOpen,
-																					 this.menuFileClose,
-																					 this.menuFileCloseAll,
-																					 this.menuItem5,
-																					 this.menuFileSave,
-																					 this.menuFileSaveAll,
-																					 this.menuItem9,
-																					 this.menuFileExit});
+            this.menuFileNew,
+            this.menuFileOpen,
+            this.menuFileClose,
+            this.menuFileCloseAll,
+            this.menuItem5,
+            this.menuFileSave,
+            this.menuFileSaveAll,
+            this.menuItem9,
+            this.menuFileExit});
             this.menuFile.Text = "File";
             // 
             // menuFileNew
@@ -351,13 +354,13 @@ namespace NetSpell.DictionaryBuild {
             // 
             this.menuEdit.Index = 1;
             this.menuEdit.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-																					 this.menuEditUndo,
-																					 this.menuItem3,
-																					 this.menuEditCut,
-																					 this.menuEditCopy,
-																					 this.menuEditPaste,
-																					 this.menuItem8,
-																					 this.menuEditSelect});
+            this.menuEditUndo,
+            this.menuItem3,
+            this.menuEditCut,
+            this.menuEditCopy,
+            this.menuEditPaste,
+            this.menuItem8,
+            this.menuEditSelect});
             this.menuEdit.Text = "Edit";
             // 
             // menuEditUndo
@@ -405,9 +408,9 @@ namespace NetSpell.DictionaryBuild {
             this.menuWindow.Index = 2;
             this.menuWindow.MdiList = true;
             this.menuWindow.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-																					   this.menuWindowHorizontal,
-																					   this.menuWindowVertical,
-																					   this.menuWindowCascade});
+            this.menuWindowHorizontal,
+            this.menuWindowVertical,
+            this.menuWindowCascade});
             this.menuWindow.MergeOrder = 7;
             this.menuWindow.Text = "Window";
             // 
@@ -433,7 +436,7 @@ namespace NetSpell.DictionaryBuild {
             // 
             this.menuHelp.Index = 3;
             this.menuHelp.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-																					 this.menuHelpAbout});
+            this.menuHelpAbout});
             this.menuHelp.MergeOrder = 8;
             this.menuHelp.Text = "Help";
             // 
@@ -445,24 +448,34 @@ namespace NetSpell.DictionaryBuild {
             // 
             // toolBarImages
             // 
-            this.toolBarImages.ImageSize = new System.Drawing.Size(16, 16);
             this.toolBarImages.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("toolBarImages.ImageStream")));
             this.toolBarImages.TransparentColor = System.Drawing.Color.Transparent;
+            this.toolBarImages.Images.SetKeyName(0, "");
+            this.toolBarImages.Images.SetKeyName(1, "");
+            this.toolBarImages.Images.SetKeyName(2, "");
+            this.toolBarImages.Images.SetKeyName(3, "");
+            this.toolBarImages.Images.SetKeyName(4, "");
+            this.toolBarImages.Images.SetKeyName(5, "");
+            this.toolBarImages.Images.SetKeyName(6, "");
+            this.toolBarImages.Images.SetKeyName(7, "");
+            this.toolBarImages.Images.SetKeyName(8, "");
+            this.toolBarImages.Images.SetKeyName(9, "");
+            this.toolBarImages.Images.SetKeyName(10, "");
             // 
             // editToolBar
             // 
             this.editToolBar.AutoSize = false;
             this.editToolBar.Buttons.AddRange(new System.Windows.Forms.ToolBarButton[] {
-																						   this.newBarButton,
-																						   this.openBarButton,
-																						   this.saveBarButton,
-																						   this.toolBarButton4,
-																						   this.cutBarButton,
-																						   this.copyBarButton,
-																						   this.pasteBarButton,
-																						   this.toolBarButton8,
-																						   this.undoBarButton,
-																						   this.toolBarButton11});
+            this.newBarButton,
+            this.openBarButton,
+            this.saveBarButton,
+            this.toolBarButton4,
+            this.cutBarButton,
+            this.copyBarButton,
+            this.pasteBarButton,
+            this.toolBarButton8,
+            this.undoBarButton,
+            this.toolBarButton11});
             this.editToolBar.ButtonSize = new System.Drawing.Size(24, 24);
             this.editToolBar.DropDownArrows = true;
             this.editToolBar.ImageList = this.toolBarImages;
@@ -477,48 +490,58 @@ namespace NetSpell.DictionaryBuild {
             // newBarButton
             // 
             this.newBarButton.ImageIndex = 4;
+            this.newBarButton.Name = "newBarButton";
             this.newBarButton.ToolTipText = "New";
             // 
             // openBarButton
             // 
             this.openBarButton.ImageIndex = 5;
+            this.openBarButton.Name = "openBarButton";
             this.openBarButton.ToolTipText = "Open";
             // 
             // saveBarButton
             // 
             this.saveBarButton.ImageIndex = 8;
+            this.saveBarButton.Name = "saveBarButton";
             this.saveBarButton.ToolTipText = "Save";
             // 
             // toolBarButton4
             // 
+            this.toolBarButton4.Name = "toolBarButton4";
             this.toolBarButton4.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
             // 
             // cutBarButton
             // 
             this.cutBarButton.ImageIndex = 1;
+            this.cutBarButton.Name = "cutBarButton";
             this.cutBarButton.ToolTipText = "Cut";
             // 
             // copyBarButton
             // 
             this.copyBarButton.ImageIndex = 0;
+            this.copyBarButton.Name = "copyBarButton";
             this.copyBarButton.ToolTipText = "Copy";
             // 
             // pasteBarButton
             // 
             this.pasteBarButton.ImageIndex = 6;
+            this.pasteBarButton.Name = "pasteBarButton";
             this.pasteBarButton.ToolTipText = "Paste";
             // 
             // toolBarButton8
             // 
+            this.toolBarButton8.Name = "toolBarButton8";
             this.toolBarButton8.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
             // 
             // undoBarButton
             // 
             this.undoBarButton.ImageIndex = 10;
+            this.undoBarButton.Name = "undoBarButton";
             this.undoBarButton.ToolTipText = "Undo";
             // 
             // toolBarButton11
             // 
+            this.toolBarButton11.Name = "toolBarButton11";
             this.toolBarButton11.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
             // 
             // MainForm
@@ -531,7 +554,7 @@ namespace NetSpell.DictionaryBuild {
             this.IsMdiContainer = true;
             this.Menu = this.mainMenu;
             this.Name = "MainForm";
-            this.Text = "Dictionary Build";
+            this.Text = "Dictionary Build {version}";
             this.Closing += new System.ComponentModel.CancelEventHandler(this.MainForm_Closing);
             this.ResumeLayout(false);
 

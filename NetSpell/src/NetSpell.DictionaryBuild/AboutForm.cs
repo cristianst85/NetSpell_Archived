@@ -81,7 +81,7 @@ namespace NetSpell.DictionaryBuild {
                     }
                 }
 
-                // Extract the assemply related modules and move them to the top
+                // Extract the assembly related modules and move them to the top
                 for (int i = localItems.Count; i > 0; i--) {
                     ListViewItem localItem = (ListViewItem)localItems[i - 1];
                     assembliesListView.Items.Remove(localItem);

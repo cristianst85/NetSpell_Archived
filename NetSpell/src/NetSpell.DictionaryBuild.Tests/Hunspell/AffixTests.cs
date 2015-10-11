@@ -88,5 +88,12 @@ namespace NetSpell.DictionaryBuild.Tests.Hunspell {
             Affix affix = new Affix(affixClass, affixClassFlag, isCrossProduct);
             Assert.AreEqual(expectedLineString, affix.ToString());
         }
+
+        [TestCase("SFX", 'a', true, "a Y 0")]
+        [TestCase("PFX", 'b', false, "b N 0")]
+        public void ToNetSpellString(String affixClass, char affixClassFlag, bool isCrossProduct, String expectedLineString) {
+            Affix affix = new Affix(affixClass, affixClassFlag, isCrossProduct);
+            Assert.AreEqual(expectedLineString, affix.ToNetSpellString());
+        }
     }
 }

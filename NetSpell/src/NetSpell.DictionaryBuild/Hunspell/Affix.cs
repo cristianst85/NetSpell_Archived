@@ -79,6 +79,10 @@ namespace NetSpell.DictionaryBuild.Hunspell {
             return String.Format("{0} {1} {2} {3}", this.Class.ToString(), this.Flag, this.IsCrossProduct ? 'Y' : 'N', this.Rules.Count);
         }
 
+        public string ToNetSpellString() {
+            return String.Format("{0} {1} {2}", this.Flag, this.IsCrossProduct ? 'Y' : 'N', this.Rules.Count);
+        }
+
         public bool Equals(Affix other) {
             if (other == null) {
                 return false;

@@ -149,6 +149,10 @@ namespace NetSpell.DictionaryBuild.Hunspell {
             return String.Format("{0} {1} {2} {3} {4}", this.Flag, this.StrippingCharacters == null ? "0" : this.StrippingCharacters, this.Affix, this.Condition == null ? "." : this.Condition, this.MorphologicalDescription).TrimEnd();
         }
 
+        public string ToNetSpellString() {
+            return String.Format("{0} {1} {2} {3}", this.Flag, this.StrippingCharacters == null ? "0" : this.StrippingCharacters, this.Affix, this.Condition == null ? "." : this.Condition).TrimEnd();
+        }
+
         public string ToString(AffixClass affixClass) {
             return String.Format("{0} {1} {2} {3} {4} {5}", affixClass.ToString(), this.Flag, this.StrippingCharacters == null ? "0" : this.StrippingCharacters, this.Affix, this.Condition == null ? "." : this.Condition, this.MorphologicalDescription).TrimEnd();
         }
