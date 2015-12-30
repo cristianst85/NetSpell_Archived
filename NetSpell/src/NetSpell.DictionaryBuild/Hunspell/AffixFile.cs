@@ -160,7 +160,7 @@ namespace NetSpell.DictionaryBuild.Hunspell {
                             }
                         }
                         else {
-                            ; // Ignore anyting else.
+                            ; // Ignore anything else.
                         }
                     }
                 }
