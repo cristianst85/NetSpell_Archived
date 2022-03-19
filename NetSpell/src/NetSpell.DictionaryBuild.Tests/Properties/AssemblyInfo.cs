@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("NetSpell.DictionaryBuild.Tests")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("NetSpell.DictionaryBuild.Tests")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Cristian Stoica")]
 [assembly: AssemblyProduct("NetSpell.DictionaryBuild.Tests")]
-[assembly: AssemblyCopyright("Copyright ©  2015")]
+[assembly: AssemblyCopyright("Copyright © 2015-2022 Cristian Stoica")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

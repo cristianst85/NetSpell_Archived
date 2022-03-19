@@ -1,12 +1,11 @@
-﻿using System;
-using NetSpell.DictionaryBuild.Hunspell;
+﻿using NetSpell.DictionaryBuild.Hunspell;
 using NUnit.Framework;
 
-namespace NetSpell.DictionaryBuild.Tests.Hunspell {
-
+namespace NetSpell.DictionaryBuild.Tests.Hunspell
+{
     [TestFixture]
-    public class AffixRuleTests {
-
+    public class AffixRuleTests
+    {
         [TestCase("SFX t 0 u eț", "SFX", 't', null, "u", "eț", null)]
         [TestCase("PFX e 0 ne .", "PFX", 'e', null, "ne", null, null)]
         [TestCase("SFX U a o a", "SFX", 'U', "a", "o", "a", null)]
@@ -14,10 +13,10 @@ namespace NetSpell.DictionaryBuild.Tests.Hunspell {
         [TestCase("SFX Q   0     u      [^eu]", "SFX", 'Q', null, "u", "[^eu]", null)]
         [TestCase("SFX l   0     ul      [^eu]           s. m. sg. art.", "SFX", 'l', null, "ul", "[^eu]", "s. m. sg. art.")]
         [TestCase("SFX I esc ii [^i]esc #prefect simplu", "SFX", 'I', "esc", "ii", "[^i]esc", "#prefect simplu")]
-        public void TryParse(String line, String affixClassString, char affixRuleFlag, String strippingCharacters, String affix, String condition, String morphologicalDescription) {
-            AffixRule affixRule = null;
-            AffixClass affixClass = null;
-            bool parseResult = AffixRule.TryParse(line, out affixRule, out affixClass);
+        public void TryParse(string line, string affixClassString, char affixRuleFlag, string strippingCharacters, string affix, string condition, string morphologicalDescription)
+        {
+            var parseResult = AffixRule.TryParse(line, out AffixRule affixRule, out AffixClass affixClass);
+            
             Assert.AreEqual(true, parseResult, "parseResult");
             Assert.IsNotNull(affixRule, "Assert affixRule is not null.");
             Assert.IsNotNull(affixClass, "Assert affixClass is not null.");
@@ -36,9 +35,10 @@ namespace NetSpell.DictionaryBuild.Tests.Hunspell {
         [TestCase("SFX Q   0     u      [^eu]", "SFX", 'Q', null, "u", "[^eu]", null)]
         [TestCase("SFX l   0     ul      [^eu]           s. m. sg. art.", "SFX", 'l', null, "ul", "[^eu]", "s. m. sg. art.")]
         [TestCase("SFX I esc ii [^i]esc #prefect simplu", "SFX", 'I', "esc", "ii", "[^i]esc", "#prefect simplu")]
-        public void Parse(String line, String affixClassString, char affixRuleFlag, String strippingCharacters, String affix, String condition, String morphologicalDescription) {
-            AffixClass affixClass = null;
-            AffixRule affixRule = AffixRule.Parse(line, out affixClass);
+        public void Parse(string line, string affixClassString, char affixRuleFlag, string strippingCharacters, string affix, string condition, string morphologicalDescription)
+        {
+            var affixRule = AffixRule.Parse(line, out AffixClass affixClass);
+            
             Assert.IsNotNull(affixRule, "Assert affixRule is not null.");
             Assert.IsNotNull(affixClass, "Assert affixClass is not null.");
             Assert.AreEqual(affixClassString, affixClass.ToString(), "affixClass");
@@ -54,8 +54,10 @@ namespace NetSpell.DictionaryBuild.Tests.Hunspell {
         [TestCase('e', null, "ne", null, null, "e 0 ne .")]
         [TestCase('B', "ez", "ează", "[^i]ez", null, "B ez ează [^i]ez")]
         [TestCase('q', null, "ul", null, "adj. m. sg. art.", "q 0 ul . adj. m. sg. art.")]
-        public void ToString(char affixClassFlag, String strippingCharacters, String affix, String condition, String morphologicalDescription, String expectedLineString) {
-            AffixRule affixRule = new AffixRule(affixClassFlag, strippingCharacters, affix, condition, morphologicalDescription);
+        public void ToString(char affixClassFlag, string strippingCharacters, string affix, string condition, string morphologicalDescription, string expectedLineString)
+        {
+            var affixRule = new AffixRule(affixClassFlag, strippingCharacters, affix, condition, morphologicalDescription);
+            
             Assert.AreEqual(expectedLineString, affixRule.ToString());
         }
 
@@ -64,8 +66,10 @@ namespace NetSpell.DictionaryBuild.Tests.Hunspell {
         [TestCase('e', null, "ne", null, null, "e 0 ne .")]
         [TestCase('B', "ez", "ează", "[^i]ez", null, "B ez ează [^i]ez")]
         [TestCase('q', null, "ul", null, "adj. m. sg. art.", "q 0 ul .")]
-        public void ToNetSpellString(char affixClassFlag, String strippingCharacters, String affix, String condition, String morphologicalDescription, String expectedLineString) {
-            AffixRule affixRule = new AffixRule(affixClassFlag, strippingCharacters, affix, condition, morphologicalDescription);
+        public void ToNetSpellString(char affixClassFlag, string strippingCharacters, string affix, string condition, string morphologicalDescription, string expectedLineString)
+        {
+            var affixRule = new AffixRule(affixClassFlag, strippingCharacters, affix, condition, morphologicalDescription);
+            
             Assert.AreEqual(expectedLineString, affixRule.ToNetSpellString());
         }
 
@@ -74,8 +78,10 @@ namespace NetSpell.DictionaryBuild.Tests.Hunspell {
         [TestCase("SFX", 'e', null, "ne", null, null, "SFX e 0 ne .")]
         [TestCase("SFX", 'B', "ez", "ează", "[^i]ez", null, "SFX B ez ează [^i]ez")]
         [TestCase("SFX", 'q', null, "ul", null, "adj. m. sg. art.", "SFX q 0 ul . adj. m. sg. art.")]
-        public void ToString(String affixClass, char affixClassFlag, String strippingCharacters, String affix, String condition, String morphologicalDescription, String expectedLineString) {
-            AffixRule affixRule = new AffixRule(affixClassFlag, strippingCharacters, affix, condition, morphologicalDescription);
+        public void ToString(string affixClass, char affixClassFlag, string strippingCharacters, string affix, string condition, string morphologicalDescription, string expectedLineString)
+        {
+            var affixRule = new AffixRule(affixClassFlag, strippingCharacters, affix, condition, morphologicalDescription);
+            
             Assert.AreEqual(expectedLineString, affixRule.ToString(AffixClass.FromString(affixClass)));
         }
     }

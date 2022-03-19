@@ -1,21 +1,21 @@
-﻿using System;
-using NetSpell.DictionaryBuild.Hunspell;
+﻿using NetSpell.DictionaryBuild.Hunspell;
 using NUnit.Framework;
+using System;
 
-namespace NetSpell.DictionaryBuild.Tests.Hunspell {
-
+namespace NetSpell.DictionaryBuild.Tests.Hunspell
+{
     [TestFixture]
-    public class AffixTests {
-
+    public class AffixTests
+    {
         [TestCase("SFX a Y 1", "SFX", 'a', true, 1)]
         [TestCase("SFX b N 2", "SFX", 'b', false, 2)]
         [TestCase("PFX c Y 3", "PFX", 'c', true, 3)]
         [TestCase("PFX d N 4", "PFX", 'd', false, 4)]
         [TestCase("PFX E N 5", "PFX", 'E', false, 5, Description = "Uppercase affix class flag.")]
-        public void TryParse(String line, String affixClass, char affixClassFlag, bool isCrossProduct, int expectedNumberOfRules) {
-            Affix affix = null;
-            int numberOfRules = 0;
-            bool parseResult = Affix.TryParse(line, out affix, out numberOfRules);
+        public void TryParse(string line, string affixClass, char affixClassFlag, bool isCrossProduct, int expectedNumberOfRules)
+        {
+            var parseResult = Affix.TryParse(line, out Affix affix, out int numberOfRules);
+
             Assert.AreEqual(true, parseResult, "parseResult");
             Assert.IsNotNull(affix, "Assert affix is not null.");
             Assert.AreEqual(affixClass, affix.Class.ToString(), "affixClass");
@@ -29,9 +29,10 @@ namespace NetSpell.DictionaryBuild.Tests.Hunspell {
         [TestCase("SFX b N 2", "SFX", 'b', false, 2)]
         [TestCase("PFX c Y 3", "PFX", 'c', true, 3)]
         [TestCase("PFX d N 4", "PFX", 'd', false, 4)]
-        public void Parse(String line, String affixClass, char affixClassFlag, bool isCrossProduct, int expectedNumberOfRules) {
-            int numberOfRules = 0;
-            Affix affix = Affix.Parse(line, out numberOfRules);
+        public void Parse(string line, string affixClass, char affixClassFlag, bool isCrossProduct, int expectedNumberOfRules)
+        {
+            var affix = Affix.Parse(line, out int numberOfRules);
+
             Assert.IsNotNull(affix, "Assert affix is not null.");
             Assert.AreEqual(affixClass, affix.Class.ToString(), "affixClass");
             Assert.AreEqual(affixClassFlag, affix.Flag, "flag");
@@ -50,15 +51,19 @@ namespace NetSpell.DictionaryBuild.Tests.Hunspell {
         [TestCase("SFX c a 1", Description = "Invalid cross product flag.")]
         [TestCase("SFX c a x", Description = "Invalid number of rules.")]
         [TestCase("SFX cc a x", Description = "Invalid affix class flag.")]
-        public void ParseThrowsException(String line) {
-            int numberOfRules = 0;
+        public void ParseThrowsException(string line)
+        {
+            var numberOfRules = 0;
+
             Assert.Throws<Exception>(() => Affix.Parse(line, out numberOfRules));
             Assert.AreEqual(0, numberOfRules);
         }
 
         [TestCase(null)]
-        public void ParseThrowsArgumentNullException(String line) {
-            int numberOfRules = 0;
+        public void ParseThrowsArgumentNullException(string line)
+        {
+            var numberOfRules = 0;
+
             Assert.Throws<ArgumentNullException>(() => Affix.Parse(line, out numberOfRules));
             Assert.AreEqual(0, numberOfRules);
         }
@@ -73,10 +78,10 @@ namespace NetSpell.DictionaryBuild.Tests.Hunspell {
         [TestCase("SFX c a 1", Description = "Invalid cross product flag.")]
         [TestCase("SFX c a x", Description = "Invalid number of rules.")]
         [TestCase("SFX cc a x", Description = "Invalid affix class flag.")]
-        public void TryParseInvalidAffixes(String line) {
-            int numberOfRules = 0;
-            Affix affix = null;
-            bool parseResult = Affix.TryParse(line, out affix, out numberOfRules);
+        public void TryParseInvalidAffixes(string line)
+        {
+            var parseResult = Affix.TryParse(line, out Affix affix, out int numberOfRules);
+            
             Assert.AreEqual(false, parseResult);
             Assert.IsNull(affix, "Assert affix is null.");
             Assert.AreEqual(0, numberOfRules);
@@ -84,15 +89,19 @@ namespace NetSpell.DictionaryBuild.Tests.Hunspell {
 
         [TestCase("SFX", 'a', true, "SFX a Y 0")]
         [TestCase("PFX", 'b', false, "PFX b N 0")]
-        public void ToString(String affixClass, char affixClassFlag, bool isCrossProduct, String expectedLineString) {
-            Affix affix = new Affix(affixClass, affixClassFlag, isCrossProduct);
+        public void ToString(string affixClass, char affixClassFlag, bool isCrossProduct, string expectedLineString)
+        {
+            var affix = new Affix(affixClass, affixClassFlag, isCrossProduct);
+            
             Assert.AreEqual(expectedLineString, affix.ToString());
         }
 
         [TestCase("SFX", 'a', true, "a Y 0")]
         [TestCase("PFX", 'b', false, "b N 0")]
-        public void ToNetSpellString(String affixClass, char affixClassFlag, bool isCrossProduct, String expectedLineString) {
-            Affix affix = new Affix(affixClass, affixClassFlag, isCrossProduct);
+        public void ToNetSpellString(string affixClass, char affixClassFlag, bool isCrossProduct, string expectedLineString)
+        {
+            var affix = new Affix(affixClass, affixClassFlag, isCrossProduct);
+            
             Assert.AreEqual(expectedLineString, affix.ToNetSpellString());
         }
     }

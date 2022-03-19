@@ -59,3 +59,5 @@ NetSpell/src/NetSpell.VisualState.xml
 NetSpell/src/TestResult.xml
 NetSpell/src/NetSpell.DictionaryBuild.Tests/bin/
 NetSpell/src/NetSpell.DictionaryBuild.Tests/obj/
+/NetSpell/src/packages/
+/NetSpell/src/.vs/
